@@ -227,13 +227,9 @@ El framerate arranca en 61–65 FPS, se estabiliza en 72 FPS y se mantiene así 
 
 ## Contenido del repositorio
 
-- [`TFM_EonSea/`](TFM_EonSea): proyecto de Unity XR (`Assets`, `Packages`, `ProjectSettings`). El plugin compilado está en `Assets/Plugins/x86_64/StreamPantalla.dll`.
-- [`StreamPantalla/`](StreamPantalla): código fuente del plugin nativo en C++ (proyecto DLL de Visual Studio 2022).
-- [`VoiceService/`](VoiceService): backend de voz en Python. Incluye el modelo de wake word (`models/hey_rovo.onnx`), la lista de comandos (`commands.json`) y la configuración (`config.json`).
 - [`docs/`](docs): memoria del TFM e imágenes.
+
+El código se ha mantenido en un repositorio privado por motivos de confidencialidad de la empresa EONSEA.
 
 El modelo `hey_rovo.onnx` se entrenó en Google Colab con un notebook de la comunidad que corrige el de openWakeWord ([alfiedennen/openwakeword-colab-2026](https://github.com/alfiedennen/openwakeword-colab-2026)). Genera muestras sintéticas de "Hey Rovo" con Piper TTS y las aumenta con ruido y respuestas al impulso de salas.
 
-## Licencias
-
-La memoria del TFM es © Olaia Picabea Sainz. Las cabeceras de `StreamPantalla/UnityPluginAPI/` son © Unity Technologies. Los assets de plantillas y samples de Unity (`Assets/Samples`, `Assets/VRTemplateAssets`, `Assets/TextMesh Pro`) tienen sus propias licencias.
