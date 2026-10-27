@@ -1,4 +1,4 @@
-# TFM · Realidad mixta con interacción por voz para la operación de ROVs
+# TFM - Desarrollo de una aplicación de realidad mixta con interacción por voz para la operación de vehículos submarinos ROV
 
 **Aplicación de realidad mixta para Meta Quest que lleva el vídeo y la telemetría de un vehículo submarino operado remotamente (ROV) a una pantalla virtual dentro del campo de visión del operario, con comandos de voz para que no tenga que soltar el mando.**
 
