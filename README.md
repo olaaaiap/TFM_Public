@@ -1,15 +1,19 @@
-# Aplicación de realidad mixta con interacción por voz para la operación de ROVs
+# TFM · Realidad mixta con interacción por voz para la operación de ROVs
 
-> Trabajo Fin de Máster — **Máster Universitario en Computación Gráfica, Realidad Virtual y Simulación** (U-tad / Universidad Camilo José Cela), Madrid, septiembre de 2026
-> Autora: **Olaia Picabea Sainz** · Tutores: Juan Jesús Ruiz Toscano, Thalia Alicia Morel Otazú
+**Aplicación de realidad mixta para Meta Quest que lleva el vídeo y la telemetría de un vehículo submarino operado remotamente (ROV) a una pantalla virtual dentro del campo de visión del operario, con comandos de voz para que no tenga que soltar el mando.**
 
-Aplicación de realidad mixta para **Meta Quest** que lleva el vídeo y la telemetría de un vehículo submarino operado remotamente (ROV) a una pantalla virtual dentro del campo de visión del operario. Incluye una **interfaz de voz** para que el operario no tenga que soltar el mando del ROV.
+Trabajo Fin de Máster del **Máster Universitario en Computación Gráfica, Realidad Virtual y Simulación** (U-tad / Universidad Camilo José Cela), Madrid, septiembre de 2026. El título completo es *Desarrollo de una aplicación de realidad mixta con interacción por voz para la operación de vehículos submarinos ROV*.
 
-🎬 [Ver el tráiler del proyecto](https://www.youtube.com/watch?v=GkBDtGstQwU) · 📄 [Leer la memoria completa (PDF)](docs/TFM_Olaia_Picabea_Sainz.pdf)
+- **Autora:** Olaia Picabea Sainz
+- **Tutores:** Juan Jesús Ruiz Toscano y Thalia Alicia Morel Otazú
+
+
+## Enlaces
+
+- 🎥 **Tráiler del proyecto:** [youtube.com/watch?v=GkBDtGstQwU](https://www.youtube.com/watch?v=GkBDtGstQwU)
+- 📄 **Memoria completa:** [TFM_Olaia_Picabea_Sainz.pdf](docs/TFM_Olaia_Picabea_Sainz.pdf)
 
 ![Imagen real de la experiencia de XR desarrollada](docs/img/experiencia_xr.jpg)
-
----
 
 ## El problema
 
@@ -29,7 +33,9 @@ Este planteamiento tiene dos problemas:
   - La aplicación responde *"¿Sí?"* y el operario dice el comando.
   - Todo se transcribe y se clasifica **en local**, sin servicios en la nube.
 
-**Aportación.** Los trabajos revisados hacen una de estas dos cosas:
+### Aportación
+
+Los trabajos revisados hacen una de estas dos cosas:
 
 - reconstruyen la interfaz del robot desde cero en VR, como TWINBOT
 - sustituyen el mando físico por la voz, como la teleoperación de robots en AR guiada por LLM
@@ -203,15 +209,6 @@ El framerate arranca en 61–65 FPS, se estabiliza en 72 FPS y se mantiene así 
 - Medir la latencia con los procesos en máquinas distintas.
 - Añadir una fase de introducción con instrucciones de uso.
 
-## Contenido del repositorio
-
-- `TFM_EonSea/`: proyecto de Unity XR (`Assets`, `Packages`, `ProjectSettings`). El plugin compilado está en `Assets/Plugins/x86_64/StreamPantalla.dll`.
-- `StreamPantalla/`: código fuente del plugin nativo en C++ (proyecto DLL de Visual Studio 2022).
-- `VoiceService/`: backend de voz en Python. Incluye el modelo de wake word (`models/hey_rovo.onnx`), la lista de comandos (`commands.json`) y la configuración (`config.json`).
-- `docs/`: memoria del TFM e imágenes.
-
-El modelo `hey_rovo.onnx` se entrenó en Google Colab con un notebook de la comunidad que corrige el de openWakeWord ([alfiedennen/openwakeword-colab-2026](https://github.com/alfiedennen/openwakeword-colab-2026)). Genera muestras sintéticas de "Hey Rovo" con Piper TTS y las aumenta con ruido y respuestas al impulso de salas.
-
 ## Lo que he aprendido
 
 - Interoperabilidad GPU sin copias intermedias entre un plugin nativo D3D11 y el hilo de render de Unity.
@@ -219,6 +216,24 @@ El modelo `hey_rovo.onnx` se entrenó en Google Colab con un notebook de la comu
 - Diseño de comunicación entre procesos: TCP frente a UDP, E/S bloqueante en hilos secundarios y sincronización del arranque.
 - Instrumentación de un sistema en tiempo real y evaluación mediante sesiones experimentales repetidas.
 
----
+## Tecnologías
+
+- **Unity 6** (6000.3.8f1) con Universal Render Pipeline y **C#**
+- **OpenXR** + Unity OpenXR: Meta, **XR Interaction Toolkit**, **XR Hands** y **AR Foundation**
+- **C++**, **Direct3D 11** y **DXGI Desktop Duplication API** para el plugin nativo
+- **Python 3.13** con **openWakeWord** (ONNX), **Faster-Whisper** y **RapidFuzz**
+- **Sockets TCP** con mensajes **JSON** para la comunicación entre procesos
+- **Meta Quest** con Meta Quest Link o Air Link
+
+## Contenido del repositorio
+
+- [`TFM_EonSea/`](TFM_EonSea): proyecto de Unity XR (`Assets`, `Packages`, `ProjectSettings`). El plugin compilado está en `Assets/Plugins/x86_64/StreamPantalla.dll`.
+- [`StreamPantalla/`](StreamPantalla): código fuente del plugin nativo en C++ (proyecto DLL de Visual Studio 2022).
+- [`VoiceService/`](VoiceService): backend de voz en Python. Incluye el modelo de wake word (`models/hey_rovo.onnx`), la lista de comandos (`commands.json`) y la configuración (`config.json`).
+- [`docs/`](docs): memoria del TFM e imágenes.
+
+El modelo `hey_rovo.onnx` se entrenó en Google Colab con un notebook de la comunidad que corrige el de openWakeWord ([alfiedennen/openwakeword-colab-2026](https://github.com/alfiedennen/openwakeword-colab-2026)). Genera muestras sintéticas de "Hey Rovo" con Piper TTS y las aumenta con ruido y respuestas al impulso de salas.
+
+## Licencias
 
 La memoria del TFM es © Olaia Picabea Sainz. Las cabeceras de `StreamPantalla/UnityPluginAPI/` son © Unity Technologies. Los assets de plantillas y samples de Unity (`Assets/Samples`, `Assets/VRTemplateAssets`, `Assets/TextMesh Pro`) tienen sus propias licencias.
